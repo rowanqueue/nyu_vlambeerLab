@@ -9,18 +9,24 @@ using UnityEngine;
 // STEP 1: ======================================================================================
 // put this script on a Sphere... it will move around, and drop a path of floor tiles behind it
 
-public class Pathmaker : MonoBehaviour {
+public class Pathmaker : MonoBehaviour
+{
 
 // STEP 2: ============================================================================================
 // translate the pseudocode below
 
 //	DECLARE CLASS MEMBER VARIABLES:
 //	Declare a private integer called counter that starts at 0; 		// counter var will track how many floor tiles I've instantiated
+	private int counter = 0;
+
 //	Declare a public Transform called floorPrefab, assign the prefab in inspector;
+	public Transform floorPrefab;
+
 //	Declare a public Transform called pathmakerSpherePrefab, assign the prefab in inspector; 		// you'll have to make a "pathmakerSphere" prefab later
+	public Transform pathmakerSpherePrefab;
 
-
-	void Update () {
+}
+/*	void Update () {
 //		If counter is less than 50, then:
 //			Generate a random number from 0.0f to 1.0f;
 //			If random number is less than 0.25f, then rotate myself 90 degrees;
@@ -36,7 +42,7 @@ public class Pathmaker : MonoBehaviour {
 	}
 
 } // end of class scope
-
+*/
 // MORE STEPS BELOW!!!........
 
 
