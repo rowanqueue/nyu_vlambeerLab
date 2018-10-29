@@ -49,7 +49,7 @@ public class Wanderer : MonoBehaviour
 		//direction
 		if (Random.value < 0.3f)//change direction
 		{
-			if (Random.value < 0.2f)//turn
+			if (Random.value < 0.6f)//turn
 			{
 				if (Random.value < 0.5f)
 				{
@@ -87,6 +87,14 @@ public class Wanderer : MonoBehaviour
 		{
 			dir = Random.Range(1, 6);
 		}
+
+		/*if (transform.position.y < WanderLeader.leader.verticality-2f && dir != 2)
+		{
+			if (Random.value < 0.5f)
+			{
+				dir = 2;
+			}
+		}*/
 	}
 
 	void GenerateRoom()

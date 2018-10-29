@@ -1460,6 +1460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seed: 
   numBlocks: 100
+  verticality: 0
   wanderers: []
   direction: []
   movementdirection: []

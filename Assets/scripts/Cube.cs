@@ -45,7 +45,14 @@ public class Cube : MonoBehaviour
 			if (v < 0.5f)
 			{
 				glass = true;
-				mr.material.color = new Color(0.5f,0.5f,0.5f,0.25f);
+				//mr.material.color = new Color(0.5f,0.5f,0.5f,0.1f);
+				mr.enabled = false;
+				float rot = 0;
+				if (zCheck >= 4)
+				{
+					rot = 90;
+				}
+				Instantiate(Resources.Load("Window"), transform.position,Quaternion.Euler(0,rot,0),transform);
 			}
 		}
 	}

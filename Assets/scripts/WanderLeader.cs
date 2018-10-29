@@ -13,6 +13,7 @@ public class WanderLeader : MonoBehaviour
 	public static WanderLeader leader;
 
 	public int numBlocks;
+	public float verticality;//percent chance to turn vertical vs horizontally
 
 	public List<Wanderer> wanderers;
 
@@ -147,19 +148,6 @@ public class WanderLeader : MonoBehaviour
 				}
 				//doorCube.mr.material.color = Color.red;	
 			}
-
-			door.mr.material.color = Color.red;
-			RaycastHit hit;
-			Ray ray = new Ray(door.transform.position, Vector3.up);
-			Physics.Raycast(ray, out hit);
-			if (hit.collider != null)
-			{
-				Cube cube2 = hit.collider.GetComponent<Cube>();
-				if (cube2 != null)
-				{
-					cube2.mr.material.color = Color.red;
-				}
-			}
 			//make steps in front of door
 			Vector3 step = (door.transform.position - center).normalized;
 			Vector3[] directions = new Vector3[]{Vector3.right,Vector3.left,Vector3.forward,Vector3.back};
@@ -172,9 +160,25 @@ public class WanderLeader : MonoBehaviour
 				}
 			}
 
+			door.mr.enabled = false;
+			RaycastHit hit;
+			Ray ray = new Ray(door.transform.position, Vector3.up);
+			Physics.Raycast(ray, out hit);
+			if (hit.collider != null)
+			{
+				Cube cube2 = hit.collider.GetComponent<Cube>();
+				if (cube2 != null)
+				{
+					Destroy(cube2.gameObject);
+				}
+			}
+
+			GameObject obj = Instantiate(Resources.Load("Door"), door.transform.position+new Vector3(0,0.5f,0f), Quaternion.identity, parent) as GameObject;
+			obj.transform.LookAt(obj.transform.position+minDir);
 			Vector3 endPos = door.transform.position + minDir + Vector3.down;
-			GameObject obj = Instantiate(Resources.Load("Cube"), endPos, Quaternion.identity, parent) as GameObject;
-			obj.GetComponent<Cube>().mr.material.color = Color.blue;
+			obj = Instantiate(Resources.Load("Stairs"), endPos, Quaternion.identity, parent) as GameObject;
+			obj.transform.LookAt(obj.transform.position+minDir);
+			//obj.GetComponent<Cube>().mr.material.color = Color.blue;
 
 			checking = false;
 		}
